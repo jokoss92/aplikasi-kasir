@@ -3,25 +3,34 @@ import { Table, Row, Col, Button, Form, FormGroup, Label, Input, FormText, Card 
 
 export default class Example extends React.Component {
   state ={
-    data : [
-      {
-      nama : "Shampo",
-      harga : 500,
-      qty : 8
-    },
-    {
-      nama : "Pasta gigi",
-      harga : 500,
-      qty : 10
-    },
-    {
-      nama : "Sabun",
-      harga : 2500,
-      qty : 5
-    }
-  ]
+    data : [],
+    nama :'',
+    harga : 0,
+    qty : 0
+  };
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  handleSubmit =()=>{
+    const { data,nama, harga,qty } = this.state;
+    let newData = {
+      nama : nama,
+      harga : harga,
+      qty : qty, 
+      total : harga * qty
+    };
+
+    data.push(newData)
+    this.setState({
+      data
+    });
   };
   render() {
+      const{harga} = this.state
+      console.log(harga)
     return (
         <Row>
             <Col md="6">
@@ -45,6 +54,7 @@ export default class Example extends React.Component {
               <td>{datas.nama}</td>
               <td>{datas.harga}</td>
               <td>{datas.qty}</td>
+              <td>{datas.total}</td>
             </tr>)
           } )
           }
@@ -76,17 +86,17 @@ export default class Example extends React.Component {
             <Form>
         <FormGroup>
           <Label for="Nama Barang">Nama Barang</Label>
-          <Input type="text" name="nama" placeholder="Nama Barang" />
+          <Input type="text" name="nama" placeholder="Nama Barang" onChange={this.handleChange}/>
         </FormGroup>
         <FormGroup>
           <Label for="Harga Barang">Harga Barang</Label>
-          <Input type="number" name="harga" placeholder="Harga Barang" />
+          <Input type="number" name="harga" placeholder="Harga Barang" onChange={this.handleChange}/>
         </FormGroup>
         <FormGroup>
           <Label for="Qty">Qty</Label>
-          <Input type="number" name="qty" placeholder="Qty" />
+          <Input type="number" name="qty" placeholder="Qty" onChange={this.handleChange}/>
         </FormGroup>
-        <Button>Simpan</Button>
+        <Button onClick={() => this.handleSubmit()}>Simpan</Button>
         </Form>
             </Card>
            </Col>
