@@ -6,7 +6,8 @@ export default class Example extends React.Component {
     data : [],
     nama :'',
     harga : 0,
-    qty : 0
+    qty : 0,
+    jumlahHarga : 0
   };
   handleChange = (e) => {
     this.setState({
@@ -25,23 +26,36 @@ export default class Example extends React.Component {
   
     data.push(newData)
     this.setState({
-      data
+      data : data,
+      nama : "",
+      harga : 0,
+      qty : 0
     });
   };
 
-  handleRemove = (key) =>{
-    const{data} = this.state
-    data.splice(key,1)
+  handleRemove = key =>{
+    const { data } = this.state;
+    data.splice(key,1);
     this.setState({
       data 
     });
+  };
+
+  componentWillUpdate(nextProps, nextState){
+    this.sumTotal(nextState)
   }
 
-
-
+  sumTotal = (state) => {
+  const{data} = state
+  let totalHarga = 0
+  data.map((datas, key) =>{
+    totalHarga += datas.total;
+  });
+  state.jumlahHarga = totalHarga
+};
   render() {
       const{harga} = this.state
-      console.log(harga)
+      console.log(harga);
     return (
         <Row>
             <Col md="6">
@@ -84,7 +98,7 @@ export default class Example extends React.Component {
         <tbody>
           <tr>
             <th scope="row">Jumlah</th>
-            <td>2400</td>
+            <td>{this.state.jumlahHarga}</td>
 
           </tr>
                  </tbody>
