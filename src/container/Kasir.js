@@ -22,12 +22,23 @@ export default class Example extends React.Component {
       qty : qty, 
       total : harga * qty
     };
-
+  
     data.push(newData)
     this.setState({
       data
     });
   };
+
+  handleRemove = (key) =>{
+    const{data} = this.state
+    data.splice(key,1)
+    this.setState({
+      data 
+    });
+  }
+
+
+
   render() {
       const{harga} = this.state
       console.log(harga)
@@ -44,6 +55,7 @@ export default class Example extends React.Component {
             <th>Harga Barang</th>
             <th>Qty</th>
             <th>Total</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -55,6 +67,7 @@ export default class Example extends React.Component {
               <td>{datas.harga}</td>
               <td>{datas.qty}</td>
               <td>{datas.total}</td>
+              <td><Button onClick={()=>this.handleRemove(key)}>Hapus</Button></td>
             </tr>)
           } )
           }
