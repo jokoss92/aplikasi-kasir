@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Kasir from './container/User/Kasir';
 import NavBar from './components/Navbar';
-import HomeAdmin from './container/Admin/HomeAdmin';
+import RouteAdmin from './container/Admin/RouteAdmin';
 import {Switch, Route} from  'react-router-dom';
 
 class App extends Component {
@@ -16,7 +16,7 @@ class App extends Component {
         </Switch>
         <Switch>
         <Route path="/" exact component={() => <Kasir/>}/>
-        <Route path="/admin" component={() => <HomeAdmin/>}/>
+        <Route path="/admin" component={() => <RouteAdmin/>}/>
         </Switch>
       </div>
     );
