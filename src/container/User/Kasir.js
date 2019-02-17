@@ -15,7 +15,7 @@ export default class Example extends React.Component {
     });
   };
 
-  handleSubmit =()=>{
+  handleSubmit =(event, fields)=>{
     const { data,nama, harga,qty } = this.state;
     let newData = {
       nama : nama,
@@ -31,6 +31,7 @@ export default class Example extends React.Component {
       harga : 0,
       qty : 0
     });
+    this.form && this.form.reset();
   };
 
   handleRemove = key =>{
@@ -123,7 +124,7 @@ export default class Example extends React.Component {
           <Label for="Qty">Qty</Label>
           <Input type="number" name="qty" placeholder="Qty" onChange={this.handleChange}/>
         </FormGroup>
-        <Button onClick={() => this.handleSubmit()}>Simpan</Button>
+        <Button onClick={() => this.handleSubmit()} ref={c => (this.form = c)}>Simpan</Button>
         </Form>
             </Card>
            </Col>
