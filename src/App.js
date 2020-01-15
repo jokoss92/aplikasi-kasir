@@ -6,6 +6,9 @@ import NavBar from './components/Navbar';
 import RouteAdmin from './container/Admin/RouteAdmin';
 import {Switch, Route} from  'react-router-dom';
 
+const liff = window.liff;  
+
+
 class App extends Component {
   render() {
     return (
@@ -21,6 +24,14 @@ class App extends Component {
       </div>
     );
   }
+
+  initialize() {
+    liff.init((data) => {
+      //code
+    });
+  }
 }
+
+
 
 export default App;
