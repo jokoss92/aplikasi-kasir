@@ -27,7 +27,7 @@ export default class Example extends React.Component {
       [e.target.name]: e.target.value
     });
     this.initialize = this.initialize.bind(this);
-    this.closeApp = this.closeApp.bind(this);
+    // this.closeApp = this.closeApp.bind(this);
   };
   
 
@@ -83,15 +83,15 @@ export default class Example extends React.Component {
     }); 
   }
 
-  closeApp(event) {
-    event.preventDefault();
-    liff.sendMessages([{
-      type: 'text',
-      text: "Thank you, Bye!"
-    }]).then(() => {
-      liff.closeWindow();
-    });
-  }
+  // closeApp(event) {
+  //   event.preventDefault();
+  //   liff.sendMessages([{
+  //     type: 'text',
+  //     text: "Thank you, Bye!"
+  //   }]).then(() => {
+  //     liff.closeWindow();
+  //   });
+  // }
 
   render() {
     const { harga } = this.state;
@@ -153,9 +153,9 @@ export default class Example extends React.Component {
               User ID : {this.state.userId} <br />
               Status Msg : {this.state.statusMessage}
             </p>
-            <Button color="primary" onClick={this.closeApp}>
+            {/* <Button color="primary" onClick={this.closeApp}>
               Close
-            </Button>
+            </Button> */}
             <Form>
               <FormGroup>
                 <Label for="Nama Barang">Nama Barang</Label>
